@@ -16,20 +16,21 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
     var ss = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
+        height: ss.height,
         decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [Colors.grey[800]!, Colors.black38])),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(height: ss.width*.05,),
+            // Container(height: ss.width*.05,),
             Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children:[
                   Padding(
-                      padding: EdgeInsets.all(ss.width * .02),
+                      padding: EdgeInsets.only(top:ss.width * .05, right:ss.width*.02),
                       child:
                   Container(
                     width: ss.width * .10,
@@ -57,61 +58,33 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
                         style: TextStyle(fontSize: ss.width * .1,
                                           fontWeight: FontWeight.w600) ,
               )],),
-
-            Expanded(child:Stack(children:[
-              Positioned(
-                  bottom: ss.width * .15,
-                  child: Image.asset(
-                      "assets/images/tesla_90_graphic_trans.png",
-                      width:ss.width,
-                    fit:BoxFit.contain
-                  )),
-                Positioned(
-                    top: ss.width * .01,
-              child:Row(
-                children: [
-                  Container(width: ss.width * .25,),
-                  Container(width: ss.width * .5,
-                      child:Text(driven_distance,
-                          style:TextStyle(
-                            fontSize: ss.width * .3,
-                            fontWeight:FontWeight.w100,)
-                      )),
-                  Container(width: ss.width * .25,
-                      child: Text("km")
-                  ),
-                ],)),
-
-            ])),
-
-            Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children:[
+            Row(
+              children: [
+                Container(width: ss.width * .25,),
+                Container(width: ss.width * .5,
+                    child:Text(driven_distance,
+                        style:TextStyle(
+                          fontSize: ss.width * .3,
+                          fontWeight:FontWeight.w100,)
+                    )),
+                Container(width: ss.width * .25,
+                    child: Text("km")
+                ),
+              ],),
+            Container(
+            child:Image.asset(
+                "assets/images/tesla_90_graphic.png",
+                width:ss.width,
+                fit:BoxFit.contain
+            )),
+            Container(height: ss.width*.05,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Text("A/C is turned " + ac_on_off)],),
-                  Container(height: ss.width*.01,),
+                  Container(height: ss.width*.05,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
-                // Container(
-                //   width: ss.width * .12,
-                //   child:
-                  // RawMaterialButton(
-                  //   onPressed: () {
-                  //   },
-                  //   splashColor: Colors.tealAccent,
-                  //   elevation: 20.0,
-                  //   fillColor: Colors.lightBlue,
-                  //   child: Icon(Icons.lock_outline,
-                  //     color: Colors.white,
-                  //     size: ss.width * .04,
-                  //   ),
-                  //   padding: EdgeInsets.all(8.0),
-                  //   shape: CircleBorder(),
-                  // )
-
                   Container(
                     width: ss.width * .12,
                     height: ss.width * .12,
@@ -131,21 +104,24 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
                             color: Colors.white,
                             size: ss.width * .04,
                           ),
-                      onPressed: () {},
+                      onPressed: () {
+
+                        Navigator.of(context).push()
+                      },
                     ),
                   // )
 
               )],),
-                  Container(height: ss.width*.01,),
+                  Container(height: ss.width*.03,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Text("Tap to open the car" )],),
 
                   Container(height: ss.width*.05,)
 
-          ]),
+      ]),
 
-                ]),)
+          )
     );
   }
 }
