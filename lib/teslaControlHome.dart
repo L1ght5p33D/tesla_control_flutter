@@ -15,51 +15,59 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
   Widget build(BuildContext context) {
     var ss = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      title:Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children:[  Container(
-          width: ss.width * .12,
-          child:
-          RawMaterialButton(
-            onPressed: () {
-            },
-            splashColor: Colors.tealAccent,
-            elevation: 2.0,
-            fillColor: Theme.of(context).backgroundColor,
-            child: Icon(Icons.settings,
-              color: Theme.of(context).textTheme.titleMedium!.color,
-            ),
-            padding: EdgeInsets.all(8.0),
-            shape: CircleBorder(),
-          ))]),
-
-      ),
-      body: Center(
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.grey[800]!, Colors.black38])),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Container(height: ss.width*.05,),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children:[
+                  Padding(
+                      padding: EdgeInsets.all(ss.width * .02),
+                      child:
+                  Container(
+                    width: ss.width * .10,
+                    child:
+                    RawMaterialButton(
+                      onPressed: () {
+                      },
+                      splashColor: Colors.tealAccent,
+                      elevation: 2.0,
+                      fillColor: Colors.grey[900],
+                      child: Icon(Icons.settings_outlined,
+                          color: Theme.of(context).textTheme.titleMedium!.color,
+                          size: ss.width *.04
+                      ),
+                      padding: EdgeInsets.all(ss.width*.02),
+                      shape: CircleBorder(),
+                    )))]),
+
            Row(
              mainAxisAlignment: MainAxisAlignment.center,
              children: [Text("Tesla")],),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Text("Model S",
-                        style: TextStyle(fontSize: ss.width * .12,
-                                          fontWeight: FontWeight.w400) ,
+                        style: TextStyle(fontSize: ss.width * .1,
+                                          fontWeight: FontWeight.w600) ,
               )],),
 
             Expanded(child:Stack(children:[
               Positioned(
                   bottom: ss.width * .15,
                   child: Image.asset(
-                      "assets/images/tesla_45_graphic.jpeg",
+                      "assets/images/tesla_90_graphic_trans.png",
                       width:ss.width,
                     fit:BoxFit.contain
                   )),
                 Positioned(
-                    top: ss.width * .05,
+                    top: ss.width * .01,
               child:Row(
                 children: [
                   Container(width: ss.width * .25,),
@@ -67,7 +75,7 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
                       child:Text(driven_distance,
                           style:TextStyle(
                             fontSize: ss.width * .3,
-                            fontWeight:FontWeight.w200,)
+                            fontWeight:FontWeight.w100,)
                       )),
                   Container(width: ss.width * .25,
                       child: Text("km")
@@ -82,30 +90,58 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Text("A/C is turned " + ac_on_off)],),
-
+                  Container(height: ss.width*.01,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [Container(
-                  width: ss.width * .12,
-                  child:
-                  RawMaterialButton(
-                    onPressed: () {
-                    },
-                    splashColor: Colors.tealAccent,
-                    elevation: 2.0,
-                    fillColor: Colors.lightBlue,
-                    child: Icon(Icons.lock,
-                      color: Colors.white,
-                    ),
-                    padding: EdgeInsets.all(8.0),
-                    shape: CircleBorder(),
-                  ))],),
+              children: [
 
+                // Container(
+                //   width: ss.width * .12,
+                //   child:
+                  // RawMaterialButton(
+                  //   onPressed: () {
+                  //   },
+                  //   splashColor: Colors.tealAccent,
+                  //   elevation: 20.0,
+                  //   fillColor: Colors.lightBlue,
+                  //   child: Icon(Icons.lock_outline,
+                  //     color: Colors.white,
+                  //     size: ss.width * .04,
+                  //   ),
+                  //   padding: EdgeInsets.all(8.0),
+                  //   shape: CircleBorder(),
+                  // )
+
+                  Container(
+                    width: ss.width * .12,
+                    height: ss.width * .12,
+                    decoration: new BoxDecoration(
+                      border: Border.all(
+                          width: 1.0,
+                          color: Colors.blue[900]!),
+                      borderRadius: BorderRadius.circular(ss.width * .06),
+                      gradient: new LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Colors.blue[800]!, Colors.blue[400]! ],
+                      ),
+                    ),
+                    child: TextButton(
+                      child: Icon(Icons.lock_outline,
+                            color: Colors.white,
+                            size: ss.width * .04,
+                          ),
+                      onPressed: () {},
+                    ),
+                  // )
+
+              )],),
+                  Container(height: ss.width*.01,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Text("Tap to open the car" )],),
 
-                  Container(height: ss.width*.02,)
+                  Container(height: ss.width*.05,)
 
           ]),
 

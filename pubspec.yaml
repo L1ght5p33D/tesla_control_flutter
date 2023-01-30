@@ -65,8 +65,8 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-    - assets/images/tesla_45_graphic.jpeg
-
+    - assets/images/tesla_45_graphic.png
+    - assets/images/tesla_90_graphic.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
