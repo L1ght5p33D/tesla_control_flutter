@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tesla_control_ui/controlPage.dart';
 
 var driven_distance = "297";
 var ac_on_off = "on";
@@ -106,7 +107,9 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
                           ),
                       onPressed: () {
 
-                        Navigator.of(context).push()
+                        Navigator.of(context).push(MaterialPageRoute(builder:(context){
+                            return ControlPage();
+                        }));
                       },
                     ),
                   // )
