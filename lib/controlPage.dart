@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_drawer/bottom_drawer.dart';
+import 'package:flutter/rendering.dart';
 
 
 String battery_percent_text = "88%";
@@ -23,17 +24,18 @@ class ControlPage extends StatefulWidget {
 
 class _ControlPageState extends State<ControlPage> {
 
-  double _headerHeight = 0.0;
-  double _bodyHeight = 0.0;
+  double? _headerHeight;
+  double? _bodyHeight;
   BottomDrawerController _controller = BottomDrawerController();
 
   Widget _buildBottomDrawer(BuildContext context, Size ss) {
     return BottomDrawer(
-      header: _buildBottomDrawerHead(context),
+      header: _buildBottomDrawerHead(context, ss),
       body: _buildBottomDrawerBody(context, ss),
-      headerHeight: _headerHeight,
-      drawerHeight: _bodyHeight,
-      color: Colors.lightBlue,
+      cornerRadius: ss.width*.2,
+      headerHeight: _headerHeight!,
+      drawerHeight: _bodyHeight!,
+      color: Colors.blueGrey[800]!,
       controller: _controller,
       boxShadow: [
         BoxShadow(
@@ -46,15 +48,75 @@ class _ControlPageState extends State<ControlPage> {
     );
   }
 
-  Widget _buildBottomDrawerHead(BuildContext context) {
+  Widget _buildBottomDrawerHead(BuildContext context, Size ss) {
     return Container(
         height: _headerHeight,
-        child: Row(children:[Text("A/C is ON")])
+        child: Padding(
+          padding: EdgeInsets.only(top:ss.width * .02),
+    child:
+    Column(children:[
+    Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+    children:[
+      Container(height: ss.width * .01,
+              width: ss.width * .3,
+              color: Colors.black,
+      ),
+
+    ]),
+            Padding(
+                padding: EdgeInsets.only(top:ss.width * .02),
+                child:
+    Row(
+            children:[
+              Container(width: ss.width * .1,),
+          Container(width:ss.width * .6,
+                    height: ss.width * .2,
+          child:Column(children:[
+          Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children:[Text("A/C is ON"),]),
+          Text("Tap to turn off or swipe up to adjust",
+          style: TextStyle(fontSize: ss.width * .03),)
+          ]) ),
+                Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children:[
+              Container(
+                width: ss.width * .12,
+                height: ss.width * .12,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      width: 1.0,
+                      color: Colors.blue[900]!),
+                  borderRadius: BorderRadius.circular(ss.width * .06),
+                  gradient:  LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Colors.blue[800]!, Colors.blue[400]! ],
+                  ),
+                ),
+                child: TextButton(
+                  child: Icon(Icons.power_settings_new_sharp,
+                    color: Colors.white,
+                    size: ss.width * .04,
+                  ),
+                  onPressed: () {
+
+                  },
+                ),
+              )]),
+              Container(width: ss.width * .1,),
+    ]))]))
     );
   }
 
   Widget _buildBottomDrawerBody(BuildContext context, Size ss) {
-    return Container(
+    return ClipRRect(
+        borderRadius:
+        BorderRadius.circular(
+        ss.width * .2),
+    child: Container(
       width: double.infinity,
       height: _bodyHeight,
       child: SingleChildScrollView(
@@ -111,14 +173,12 @@ class _ControlPageState extends State<ControlPage> {
 
                     },
                   ),
-                  // )
-
                 )
               ],)
             ]
         ),
       ),
-    );
+    ));
   }
 
 
@@ -132,7 +192,7 @@ class _ControlPageState extends State<ControlPage> {
         .of(context)
         .size;
 
-    _headerHeight = ss.height * .08;
+    _headerHeight = ss.height * .14;
     _bodyHeight = ss.height * .9;
 
     return Scaffold(body:
