@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_drawer/bottom_drawer.dart';
 import 'package:flutter/rendering.dart';
-
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 String battery_percent_text = "88%";
 String range_text = "278km";
@@ -27,6 +27,18 @@ class _ControlPageState extends State<ControlPage> {
   double? _headerHeight;
   double? _bodyHeight;
   BottomDrawerController _controller = BottomDrawerController();
+
+  double g_value = 69;
+
+  void onPointerValueChanged(double value) {
+    setState(() {
+      final int _value = value.toInt();
+      _annotationValue = '$_value';
+      g_value = value;
+    });
+  }
+
+  String _annotationValue = '60';
 
   Widget _buildBottomDrawer(BuildContext context, Size ss) {
     return BottomDrawer(
@@ -70,6 +82,9 @@ class _ControlPageState extends State<ControlPage> {
     Row(
             children:[
               Container(width: ss.width * .1,),
+                Padding(
+                    padding:EdgeInsets.only(top:ss.width*.03),
+                    child:
           Container(width:ss.width * .6,
                     height: ss.width * .2,
           child:Column(children:[
@@ -78,10 +93,10 @@ class _ControlPageState extends State<ControlPage> {
               children:[Text("A/C is ON"),]),
           Text("Tap to turn off or swipe up to adjust",
           style: TextStyle(fontSize: ss.width * .03),)
-          ]) ),
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children:[
+          ]) )),
+              Padding(
+                padding:EdgeInsets.only(bottom:ss.width*.08),
+                child:
               Container(
                 width: ss.width * .12,
                 height: ss.width * .12,
@@ -105,7 +120,7 @@ class _ControlPageState extends State<ControlPage> {
 
                   },
                 ),
-              )]),
+              )),
               Container(width: ss.width * .1,),
     ]))]))
     );
@@ -174,7 +189,121 @@ class _ControlPageState extends State<ControlPage> {
                     },
                   ),
                 )
-              ],)
+              ],),
+
+
+              Stack(children:[
+                ClipRRect(
+                    borderRadius:
+                    BorderRadius.circular(
+                        ss.width * .44),child:
+                Container(
+                  width:ss.width * .88,
+                  height:ss.width * .88,
+                  child: SfRadialGauge(
+                      backgroundColor: Colors.blueGrey[900]!,
+                      axes: <RadialAxis>[
+                        RadialAxis(
+                          minimum: 50,
+                          maximum: 100,
+                          startAngle: 90,
+                          endAngle: 360,
+                          axisLineStyle: AxisLineStyle(
+                              color: Colors.blueGrey[900],
+                              thickness: 0.3, thicknessUnit: GaugeSizeUnit.factor),
+                          showTicks: false,
+                          showLabels: false,
+                          pointers: <GaugePointer>[
+                            RangePointer(
+                              // color: Colors.green,
+                                gradient: SweepGradient(
+                                    colors:[Colors.blue,Colors.blue[900]!]),
+                                value: g_value,
+                                onValueChanged: onPointerValueChanged,
+                                enableDragging: true,
+                                width: 0.2,
+                                pointerOffset: .05,
+                                dashArray: <double>[2.5, 2.5],
+                                sizeUnit: GaugeSizeUnit.factor),
+                          ],),
+                        // annotations: <GaugeAnnotation>[
+                        //   GaugeAnnotation(
+                        //       widget: Row(
+                        //         children: <Widget>[
+                        //           Text(
+                        //             '$_annotationValue' ,
+                        //             style: TextStyle(
+                        //                 fontSize: 16,
+                        //                 fontFamily: 'Times',
+                        //                 fontWeight: FontWeight.bold,
+                        //                 color: const Color(0xFF00A8B5)),
+                        //           ),
+                        //           // Text(
+                        //           //   'Cooling...',
+                        //           //   style: TextStyle(
+                        //           //       fontSize: 8,
+                        //           //       fontFamily: 'Times',
+                        //           //       fontWeight: FontWeight.bold,
+                        //           //       color: const Color(0xFF00A8B5)),
+                        //           // ),
+                        //         ],
+                        //       ),
+                        //       positionFactor: 1.1,
+                        //       angle: 0)
+                        // ]),
+
+                        RadialAxis(
+                          minimum: 0,
+                          maximum: 90,
+                          startAngle: 0,
+                          endAngle: 90,
+                          axisLineStyle: AxisLineStyle(
+                              color: Colors.blueGrey[900],
+                              thickness: 0.3, thicknessUnit: GaugeSizeUnit.factor),
+                          showTicks: false,
+                          showLabels: false,
+                          pointers: <GaugePointer>[
+                            RangePointer(
+                                color: Colors.green,
+                                gradient: SweepGradient(
+                                    colors:[Colors.blueGrey[900]!,Colors.blueGrey[900]!]),
+                                value: g_value,
+                                onValueChanged: onPointerValueChanged,
+                                enableDragging: false,
+                                width: 0.0,
+                                pointerOffset: .05,
+                                dashArray: <double>[2.5, 2.5],
+                                sizeUnit: GaugeSizeUnit.factor),
+                          ],
+                        ),
+
+                      ]),
+                )),
+                Container(
+                    width:ss.width * .88,
+                    height:ss.width * .88,
+                    child: Center(child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children:[Text(
+                          '$_annotationValue' + '',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Times',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                          Text(
+                            'Cooling...',
+                            style: TextStyle(
+                                fontSize: 8,
+                                fontFamily: 'Times',
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ]),))
+              ]),
+
+
             ]
         ),
       ),
