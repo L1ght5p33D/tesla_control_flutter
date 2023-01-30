@@ -89,12 +89,12 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
                   Container(
                     width: ss.width * .12,
                     height: ss.width * .12,
-                    decoration: new BoxDecoration(
+                    decoration: BoxDecoration(
                       border: Border.all(
                           width: 1.0,
                           color: Colors.blue[900]!),
                       borderRadius: BorderRadius.circular(ss.width * .06),
-                      gradient: new LinearGradient(
+                      gradient:  LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [Colors.blue[800]!, Colors.blue[400]! ],

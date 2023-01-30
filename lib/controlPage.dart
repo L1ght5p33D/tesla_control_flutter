@@ -4,6 +4,10 @@ String battery_percent_text = "88%";
 String range_text = "278km";
 String temperature_text = "77°F";
 
+var engine_status_text = "sleeping mode";
+var climate_status_text = "A/C is ON";
+var tires_status_text = "Pressure nominal";
+
 class ControlPage extends StatefulWidget {
   const ControlPage({Key? key}) : super(key: key);
 
@@ -97,10 +101,66 @@ class _ControlPageState extends State<ControlPage> {
                       ],))
     ],)
     ],)
-    )
+    ),
+        Row(children: [Text("Information")],),
+      Container(
+          height: ss.width * .45,
+          width: ss.width,
+          padding: EdgeInsets.all(ss.width*.04),
+          child:
+          ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+            InfoStatusLVI(toptext: "Engine", bottomtext: "Sleep mode",),
+              InfoStatusLVI(toptext: "Climate", bottomtext: "A/C is ON",),
+              InfoStatusLVI(toptext: "Tires", bottomtext: "Nominal",)
+          ],)),
 
-
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [Text("Navigation"), Text("history")],)
       ],)
     ));
   }
 }
+
+class InfoStatusLVI extends StatelessWidget {
+  InfoStatusLVI({Key? key, this.toptext, this.bottomtext}) : super(key: key);
+
+  String? toptext;
+  String? bottomtext;
+
+  @override
+  Widget build(BuildContext context) {
+    var ss = MediaQuery.of(context).size;
+    return Padding(
+        padding: EdgeInsets.all(ss.width*.02),
+        child:Container(
+          width: ss.width * .28,
+          height: ss.width * .28,
+          padding: EdgeInsets.all(ss.width*.02),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(ss.width * .03),
+            gradient:  LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Colors.black54, Colors.black ],
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children:[Text(toptext!,
+                    style: TextStyle(fontSize: ss.width*.036),)
+                  ]),
+              Container(height: ss.width*.01,),
+              Text(bottomtext!,
+              style: TextStyle(fontSize: ss.width*.025),)
+            ],),
+        ));
+  }
+}
+
+
+
