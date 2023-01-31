@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bottom_drawer/bottom_drawer.dart';
 import 'package:flutter/rendering.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:tesla_control_ui/control_buttons.dart';
 
 String battery_percent_text = "88%";
 String range_text = "278km";
@@ -76,9 +77,9 @@ class _ControlPageState extends State<ControlPage> {
       height: _bodyHeight,
       decoration: BoxDecoration(
       gradient:  LinearGradient(
-        begin: Alignment.topLeft,
+        begin: Alignment.topCenter,
         end: Alignment.bottomRight,
-        colors: [Colors.blueGrey[600]!, Colors.blueGrey[900]! ],
+        colors: [Colors.blueGrey[700]!, Colors.blueGrey[900]! ],
       )),
       child: SingleChildScrollView(
         child: Column(
@@ -120,6 +121,10 @@ class _ControlPageState extends State<ControlPage> {
                             Padding(
                                 padding:EdgeInsets.only(bottom:ss.width*.08),
                                 child:
+                                    Material(
+                                      borderRadius:BorderRadius.circular(ss.width * .06) ,
+                                        elevation: ss.width*.2,
+                                        child:
                                 Container(
                                   width: ss.width * .12,
                                   height: ss.width * .12,
@@ -128,6 +133,12 @@ class _ControlPageState extends State<ControlPage> {
                                         width: 1.0,
                                         color: Colors.blue[900]!),
                                     borderRadius: BorderRadius.circular(ss.width * .06),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black, //New
+                                          blurRadius: ss.width*.03,
+                                          offset: Offset(ss.width*.01, ss.width*.02))
+                                    ],
                                     gradient:  LinearGradient(
                                       begin: Alignment.topLeft,
                                       end: Alignment.bottomRight,
@@ -143,7 +154,7 @@ class _ControlPageState extends State<ControlPage> {
 
                                     },
                                   ),
-                                )),
+                                ))),
                             Container(width: ss.width * .1,),
                           ]))]))
         ),
@@ -154,8 +165,8 @@ class _ControlPageState extends State<ControlPage> {
                     BorderRadius.circular(
                         ss.width * .34),child:
                 Container(
-                  width:ss.width * .68,
-                  height:ss.width * .68,
+                  width:ss.width * .58,
+                  height:ss.width * .58,
                   child: SfRadialGauge(
                       backgroundColor: Colors.blueGrey[900]!,
                       axes: <RadialAxis>[
@@ -236,8 +247,8 @@ class _ControlPageState extends State<ControlPage> {
                       ]),
                 )),
                 Container(
-                    width:ss.width * .68,
-                    height:ss.width * .68,
+                    width:ss.width * .58,
+                    height:ss.width * .58,
                     child: Center(child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children:[Text(
@@ -315,113 +326,34 @@ class _ControlPageState extends State<ControlPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [Text("Mode")],),
-              Container(height: ss.width*.02,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Container(height: ss.width*.03,),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    width: ss.width * .12,
-                    height: ss.width * .12,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 1.0,
-                          color: Colors.blue[900]!),
-                      borderRadius: BorderRadius.circular(ss.width * .06),
-                      gradient:  LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.blue[800]!, Colors.blue[400]! ],
-                      ),
-                    ),
-                    child: TextButton(
-                      child: Icon(Icons.wb_auto_outlined,
-                        color: Colors.white,
-                        size: ss.width * .04,
-                      ),
-                      onPressed: () {
-
-                      },
-                    ),
-                  ),
-                  Container(
-                    width: ss.width * .12,
-                    height: ss.width * .12,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 1.0,
-                          color: Colors.blue[900]!),
-                      borderRadius: BorderRadius.circular(ss.width * .06),
-                      gradient:  LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.blue[800]!, Colors.blue[400]! ],
-                      ),
-                    ),
-                    child: TextButton(
-                      child: Icon(Icons.dry,
-                        color: Colors.white,
-                        size: ss.width * .04,
-                      ),
-                      onPressed: () {
-
-                      },
-                    ),
-                  ),
-
-                  Container(
-                    width: ss.width * .12,
-                    height: ss.width * .12,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 1.0,
-                          color: Colors.blue[900]!),
-                      borderRadius: BorderRadius.circular(ss.width * .06),
-                      gradient:  LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.blue[800]!, Colors.blue[400]! ],
-                      ),
-                    ),
-                    child: TextButton(
-                      child: Icon(Icons.lock_outline,
-                        color: Colors.white,
-                        size: ss.width * .04,
-                      ),
-                      onPressed: () {
-
-                      },
-                    ),
-                  ),
-
-                  Container(
-                    width: ss.width * .12,
-                    height: ss.width * .12,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 1.0,
-                          color: Colors.blue[900]!),
-                      borderRadius: BorderRadius.circular(ss.width * .06),
-                      gradient:  LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.blue[800]!, Colors.blue[400]! ],
-                      ),
-                    ),
-                    child: TextButton(
-                      child: Icon(Icons.lock_outline,
-                        color: Colors.white,
-                        size: ss.width * .04,
-                      ),
-                      onPressed: () {
-
-                      },
-                    ),
-                  )
-
-                ],)
-
-
-
+                  Column(children:[
+                Container(child:Text("Auto",
+                style: TextStyle(fontSize:ss.width*.03),)),
+                    Container(height: ss.width*.02,),
+                    BlueGradIconControlButton(bicon: Icons.thermostat_auto_outlined),
+                ]),
+                  Column(children:[
+                Container(child:Text("Dry",
+                    style: TextStyle(fontSize:ss.width*.03))),
+                    Container(height: ss.width*.02,),
+                    BlueGradIconControlButton(bicon: Icons.waves_outlined),
+                ]),
+                  Column(children:[
+                    Container(child:Text("Cool",
+                    style: TextStyle(fontSize:ss.width*.03))),
+                    Container(height: ss.width*.02,),
+                    BlueGradIconControlButton(bicon: Icons.severe_cold_outlined ),
+                ]),
+                  Column(children:[
+                    Container(child:Text("Program",
+                    style: TextStyle(fontSize:ss.width*.03))),
+                    Container(height: ss.width*.02,),
+                    BlueGradIconControlButton(bicon: Icons.av_timer_outlined )
+              ],),
+              ])
             ]
         ),
       )
@@ -443,17 +375,19 @@ class _ControlPageState extends State<ControlPage> {
     _bodyHeight = ss.height * .9;
 
     return Scaffold(body:
+        SafeArea(child:
     Container(
         height: ss.height,
         child:
         Stack(children: [
           Column(children: [
-            Container(height: ss.width * .05,),
             Row(children: [
               Container(width: ss.width * .15,
                   child:
                   RawMaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     splashColor: Colors.tealAccent,
                     elevation: 2.0,
                     fillColor: Colors.grey[900],
@@ -505,11 +439,12 @@ class _ControlPageState extends State<ControlPage> {
                       child: Column(children: [
                         Row(children: [Icon(Icons.battery_charging_full_sharp,
                           size: ss.width * .02,),
-                          Text("Battery",
+                          Text(" Battery",
                           style:TextStyle(fontSize: ss.width * .03)
                           )
                         ]),
-                        Text(battery_percent_text)
+                        Text(battery_percent_text,
+                            style:TextStyle(fontSize: ss.width * .035))
                       ],)
                   ),
                     Container(width: ss.width * .3,
@@ -517,10 +452,11 @@ class _ControlPageState extends State<ControlPage> {
                         child: Column(children: [
                           Row(children: [Icon(Icons.my_location_sharp,
                             size: ss.width * .02,),
-                            Text("Range",
+                            Text(" Range",
                                 style:TextStyle(fontSize: ss.width * .03))
                           ]),
-                          Text(range_text)
+                          Text(range_text,
+                              style:TextStyle(fontSize: ss.width * .035))
                         ],)
 
                     ),
@@ -530,15 +466,18 @@ class _ControlPageState extends State<ControlPage> {
                           Row(children: [Icon(Icons.person_pin_circle_rounded,
                             size: ss.width * .02,
                           ),
-                            Text("Temperature",
+                            Text(" Temperature",
                                 style:TextStyle(fontSize: ss.width * .03))
                           ]),
-                          Text(temperature_text)
+                          Text(temperature_text,
+                              style:TextStyle(fontSize: ss.width * .035))
                         ],))
                   ],)
                 ],)
             ),
-            Row(children: [Text("Information")],),
+        Padding(padding: EdgeInsets.only(left: ss.width * .03),
+          child:
+            Row(children: [Text("Information")],)),
             Container(
                 height: ss.width * .35,
                 width: ss.width,
@@ -547,20 +486,30 @@ class _ControlPageState extends State<ControlPage> {
                 ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    InfoStatusLVI(toptext: "Engine", bottomtext: "Sleep mode",),
-                    InfoStatusLVI(toptext: "Climate", bottomtext: "A/C is ON",),
-                    InfoStatusLVI(toptext: "Tires", bottomtext: "Nominal",)
+                    InfoStatusLVI(toptext: "Engine", bottomtext: "Sleep mode",
+                        asset_path: "assets/images/black_poly_crop_2.png"),
+                    InfoStatusLVI(toptext: "Climate", bottomtext: "A/C is ON",
+                        asset_path: "assets/images/black_poly_crop_1.png"),
+                    InfoStatusLVI(toptext: "Tires", bottomtext: "Nominal",
+                        asset_path: "assets/images/black_poly_crop_3.png")
                   ],)),
 
+        Padding(padding: EdgeInsets.only(left: ss.width * .03),
+          child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text("Navigation"), Text("history")],)
+              children: [Text("Navigation"),
+            Padding(padding: EdgeInsets.only(right: ss.width * .03),
+              child:
+                Text("history",
+                    style:TextStyle(fontSize: ss.width * .03)
+                ))],))
 
           ],),
 
           _buildBottomDrawer(context, ss),
 
         ])
-    ));
+    )));
   }
 
 
@@ -570,10 +519,11 @@ class _ControlPageState extends State<ControlPage> {
 
 
 class InfoStatusLVI extends StatelessWidget {
-  InfoStatusLVI({Key? key, this.toptext, this.bottomtext}) : super(key: key);
+  InfoStatusLVI({Key? key, this.toptext, this.bottomtext, this.asset_path}) : super(key: key);
 
   String? toptext;
   String? bottomtext;
+  String? asset_path;
 
   @override
   Widget build(BuildContext context) {
@@ -585,6 +535,10 @@ class InfoStatusLVI extends StatelessWidget {
           height: ss.width * .28,
           padding: EdgeInsets.all(ss.width*.02),
           decoration: BoxDecoration(
+            image: DecorationImage(
+              fit:BoxFit.fitHeight,
+                    image:AssetImage(asset_path!,
+            )),
             borderRadius: BorderRadius.circular(ss.width * .03),
             gradient:  LinearGradient(
               begin: Alignment.topLeft,

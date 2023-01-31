@@ -16,7 +16,7 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
   Widget build(BuildContext context) {
     var ss = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
+      body: SafeArea(child:Container(
         height: ss.height,
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -31,7 +31,7 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children:[
                   Padding(
-                      padding: EdgeInsets.only(top:ss.width * .05, right:ss.width*.02),
+                      padding: EdgeInsets.only(top:ss.width * .01, right:ss.width*.02),
                       child:
                   Container(
                     width: ss.width * .10,
@@ -81,7 +81,11 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
             Container(height: ss.width*.05,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text("A/C is turned " + ac_on_off)],),
+              children: [Text("A/C is turned " + ac_on_off,
+                        style: TextStyle(fontSize: ss.width*.035,
+                                        fontWeight: FontWeight.w300
+                        ) ,
+              )],),
                   Container(height: ss.width*.05,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -94,6 +98,12 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
                           width: 1.0,
                           color: Colors.blue[900]!),
                       borderRadius: BorderRadius.circular(ss.width * .06),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black, //New
+                            blurRadius: ss.width*.03,
+                            offset: Offset(ss.width*.01, ss.width*.02))
+                      ],
                       gradient:  LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
@@ -124,7 +134,7 @@ class _TeslaControlHomeState extends State<TeslaControlHome> {
 
       ]),
 
-          )
+          ))
     );
   }
 }
