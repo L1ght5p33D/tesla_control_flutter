@@ -73,6 +73,7 @@ flutter:
 
   assets:
     - assets/images/tesla_45_graphic.png
+    - assets/images/tesla_45_graphic_glow.png
     - assets/images/tesla_90_graphic.png
     - assets/images/black_poly_crop_1.png
     - assets/images/black_poly_crop_2.png

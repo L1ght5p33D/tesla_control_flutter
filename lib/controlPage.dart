@@ -428,7 +428,7 @@ class _ControlPageState extends State<ControlPage> {
               )
             ],),
 
-            Image.asset("assets/images/tesla_45_graphic.png"),
+            Image.asset("assets/images/tesla_45_graphic_glow.png"),
 
             Padding(padding: EdgeInsets.only(left: ss.width * .03),
                 child: Column(children: [
