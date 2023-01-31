@@ -28,21 +28,22 @@ class _ControlPageState extends State<ControlPage> {
   double? _bodyHeight;
   BottomDrawerController _controller = BottomDrawerController();
 
-  double g_value = 69;
-
+  double _fanspeedvalue= 4;
   void onPointerValueChanged(double value) {
     setState(() {
       final int _value = value.toInt();
-      _annotationValue = '$_value';
-      g_value = value;
+      _ac_set_value = value;
+      _ac_set_value_string = '$_value' + "°F";
     });
   }
 
-  String _annotationValue = '60';
+  double _ac_set_value = 60.0;
+  String _ac_set_value_string = '60°F';
 
   Widget _buildBottomDrawer(BuildContext context, Size ss) {
     return BottomDrawer(
-      header: _buildBottomDrawerHead(context, ss),
+      // header: _buildBottomDrawerHead(context, ss),
+      header:Container(),
       body: _buildBottomDrawerBody(context, ss),
       cornerRadius: ss.width*.2,
       headerHeight: _headerHeight!,
@@ -60,146 +61,101 @@ class _ControlPageState extends State<ControlPage> {
     );
   }
 
-  Widget _buildBottomDrawerHead(BuildContext context, Size ss) {
-    return Container(
-        height: _headerHeight,
-        child: Padding(
-          padding: EdgeInsets.only(top:ss.width * .02),
-    child:
-    Column(children:[
-    Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-    children:[
-      Container(height: ss.width * .01,
-              width: ss.width * .3,
-              color: Colors.black,
-      ),
-
-    ]),
-            Padding(
-                padding: EdgeInsets.only(top:ss.width * .02),
-                child:
-    Row(
-            children:[
-              Container(width: ss.width * .1,),
-                Padding(
-                    padding:EdgeInsets.only(top:ss.width*.03),
-                    child:
-          Container(width:ss.width * .6,
-                    height: ss.width * .2,
-          child:Column(children:[
-          Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children:[Text("A/C is ON"),]),
-          Text("Tap to turn off or swipe up to adjust",
-          style: TextStyle(fontSize: ss.width * .03),)
-          ]) )),
-              Padding(
-                padding:EdgeInsets.only(bottom:ss.width*.08),
-                child:
-              Container(
-                width: ss.width * .12,
-                height: ss.width * .12,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                      width: 1.0,
-                      color: Colors.blue[900]!),
-                  borderRadius: BorderRadius.circular(ss.width * .06),
-                  gradient:  LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.blue[800]!, Colors.blue[400]! ],
-                  ),
-                ),
-                child: TextButton(
-                  child: Icon(Icons.power_settings_new_sharp,
-                    color: Colors.white,
-                    size: ss.width * .04,
-                  ),
-                  onPressed: () {
-
-                  },
-                ),
-              )),
-              Container(width: ss.width * .1,),
-    ]))]))
-    );
-  }
-
   Widget _buildBottomDrawerBody(BuildContext context, Size ss) {
-    return ClipRRect(
+    return
+      ClipRRect(
         borderRadius:
-        BorderRadius.circular(
-        ss.width * .2),
-    child: Container(
+            BorderRadius.only(topLeft: Radius.elliptical(ss.width*.2, ss.width*.15),
+                topRight: Radius.elliptical(ss.width*.2, ss.width*.15)
+            ),
+        // BorderRadius.circular(
+        // ss.width * .2),
+    child:
+    Container(
       width: double.infinity,
       height: _bodyHeight,
+      decoration: BoxDecoration(
+      gradient:  LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Colors.blueGrey[600]!, Colors.blueGrey[900]! ],
+      )),
       child: SingleChildScrollView(
         child: Column(
             children:[
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                Container(
-                  width: ss.width * .12,
-                  height: ss.width * .12,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        width: 1.0,
-                        color: Colors.blue[900]!),
-                    borderRadius: BorderRadius.circular(ss.width * .06),
-                    gradient:  LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [Colors.blue[800]!, Colors.blue[400]! ],
-                    ),
-                  ),
-                  child: TextButton(
-                    child: Icon(Icons.lock_outline,
-                      color: Colors.white,
-                      size: ss.width * .04,
-                    ),
-                    onPressed: () {
+            Container(
+            height: _headerHeight,
+            child: Padding(
+                padding: EdgeInsets.only(top:ss.width * .02),
+                child:
+                Column(children:[
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children:[
+                        Container(height: ss.width * .01,
+                          width: ss.width * .3,
+                          color: Colors.black,
+                        ),
 
-                    },
-                  ),
-                ),
-                Container(
-                  width: ss.width * .12,
-                  height: ss.width * .12,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        width: 1.0,
-                        color: Colors.blue[900]!),
-                    borderRadius: BorderRadius.circular(ss.width * .06),
-                    gradient:  LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [Colors.blue[800]!, Colors.blue[400]! ],
-                    ),
-                  ),
-                  child: TextButton(
-                    child: Icon(Icons.lock_outline,
-                      color: Colors.white,
-                      size: ss.width * .04,
-                    ),
-                    onPressed: () {
+                      ]),
+                  Padding(
+                      padding: EdgeInsets.only(top:ss.width * .02),
+                      child:
+                      Row(
+                          children:[
+                            Container(width: ss.width * .1,),
+                            Padding(
+                                padding:EdgeInsets.only(top:ss.width*.03),
+                                child:
+                                Container(width:ss.width * .6,
+                                    height: ss.width * .2,
+                                    child:Column(children:[
+                                      Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children:[Text("A/C is ON"),]),
+                                      Text("Tap to turn off or swipe up to adjust",
+                                        style: TextStyle(fontSize: ss.width * .03),)
+                                    ]) )),
+                            Padding(
+                                padding:EdgeInsets.only(bottom:ss.width*.08),
+                                child:
+                                Container(
+                                  width: ss.width * .12,
+                                  height: ss.width * .12,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 1.0,
+                                        color: Colors.blue[900]!),
+                                    borderRadius: BorderRadius.circular(ss.width * .06),
+                                    gradient:  LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [Colors.blue[800]!, Colors.blue[400]! ],
+                                    ),
+                                  ),
+                                  child: TextButton(
+                                    child: Icon(Icons.power_settings_new_sharp,
+                                      color: Colors.white,
+                                      size: ss.width * .04,
+                                    ),
+                                    onPressed: () {
 
-                    },
-                  ),
-                )
-              ],),
-
+                                    },
+                                  ),
+                                )),
+                            Container(width: ss.width * .1,),
+                          ]))]))
+        ),
 
               Stack(children:[
                 ClipRRect(
                     borderRadius:
                     BorderRadius.circular(
-                        ss.width * .44),child:
+                        ss.width * .34),child:
                 Container(
-                  width:ss.width * .88,
-                  height:ss.width * .88,
+                  width:ss.width * .68,
+                  height:ss.width * .68,
                   child: SfRadialGauge(
                       backgroundColor: Colors.blueGrey[900]!,
                       axes: <RadialAxis>[
@@ -209,7 +165,7 @@ class _ControlPageState extends State<ControlPage> {
                           startAngle: 90,
                           endAngle: 360,
                           axisLineStyle: AxisLineStyle(
-                              color: Colors.blueGrey[900],
+                              color: Colors.blueGrey[800],
                               thickness: 0.3, thicknessUnit: GaugeSizeUnit.factor),
                           showTicks: false,
                           showLabels: false,
@@ -218,7 +174,7 @@ class _ControlPageState extends State<ControlPage> {
                               // color: Colors.green,
                                 gradient: SweepGradient(
                                     colors:[Colors.blue,Colors.blue[900]!]),
-                                value: g_value,
+                                value: _ac_set_value,
                                 onValueChanged: onPointerValueChanged,
                                 enableDragging: true,
                                 width: 0.2,
@@ -258,7 +214,7 @@ class _ControlPageState extends State<ControlPage> {
                           startAngle: 0,
                           endAngle: 90,
                           axisLineStyle: AxisLineStyle(
-                              color: Colors.blueGrey[900],
+                              color: Colors.blueGrey[800],
                               thickness: 0.3, thicknessUnit: GaugeSizeUnit.factor),
                           showTicks: false,
                           showLabels: false,
@@ -267,7 +223,7 @@ class _ControlPageState extends State<ControlPage> {
                                 color: Colors.green,
                                 gradient: SweepGradient(
                                     colors:[Colors.blueGrey[900]!,Colors.blueGrey[900]!]),
-                                value: g_value,
+                                value: _ac_set_value,
                                 onValueChanged: onPointerValueChanged,
                                 enableDragging: false,
                                 width: 0.0,
@@ -280,12 +236,12 @@ class _ControlPageState extends State<ControlPage> {
                       ]),
                 )),
                 Container(
-                    width:ss.width * .88,
-                    height:ss.width * .88,
+                    width:ss.width * .68,
+                    height:ss.width * .68,
                     child: Center(child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children:[Text(
-                          '$_annotationValue' + '',
+                          '$_ac_set_value_string',
                           style: TextStyle(
                               fontSize: 16,
                               fontFamily: 'Times',
@@ -303,10 +259,172 @@ class _ControlPageState extends State<ControlPage> {
                         ]),))
               ]),
 
+              Container(height: ss.width*.04,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Text("Fan Speed")],),
+              Container(height: ss.width*.02,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                Container(
+                    width: ss.width*.2,
+                    child:Center(child:Text("1",
+                    style: TextStyle(fontSize:ss.width*.03),
+                    ))),
+                Container(
+                    width: ss.width*.2,
+                  // padding: EdgeInsets.symmetric(horizontal:ss.width*.02),
+                    child:Center(child:Text("2",
+                      style: TextStyle(fontSize:ss.width*.03),
+                    ))),
+                Container(
+                    width: ss.width*.2,
+                    // padding: EdgeInsets.symmetric(horizontal:ss.width*.02),
+                    child:Center(child:Text("3",
+                      style: TextStyle(fontSize:ss.width*.03),
+                    ))),
+                Container(
+                    width: ss.width*.2,
+                    // padding: EdgeInsets.symmetric(horizontal:ss.width*.02),
+                    child:Center(child:Text("4",
+                      style: TextStyle(fontSize:ss.width*.03),
+                    ))),
+                Container(
+                    width: ss.width*.2,
+                    // padding: EdgeInsets.symmetric(horizontal:ss.width*.02),
+                    child:Center(child:Text("5",
+                      style: TextStyle(fontSize:ss.width*.03),
+                    )))
+              ],),
+              Slider(
+                min: 0.0,
+                max: 5.0,
+                divisions: 4,
+                activeColor: Colors.blueAccent,
+                // inactiveColor: Colors.purple.shade100,
+                thumbColor: Colors.grey[600]!,
+                value: _fanspeedvalue,
+                onChanged: (value) {
+                  setState(() {
+                    _fanspeedvalue = value;
+                  });
+                },
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Text("Mode")],),
+              Container(height: ss.width*.02,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    width: ss.width * .12,
+                    height: ss.width * .12,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 1.0,
+                          color: Colors.blue[900]!),
+                      borderRadius: BorderRadius.circular(ss.width * .06),
+                      gradient:  LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Colors.blue[800]!, Colors.blue[400]! ],
+                      ),
+                    ),
+                    child: TextButton(
+                      child: Icon(Icons.wb_auto_outlined,
+                        color: Colors.white,
+                        size: ss.width * .04,
+                      ),
+                      onPressed: () {
+
+                      },
+                    ),
+                  ),
+                  Container(
+                    width: ss.width * .12,
+                    height: ss.width * .12,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 1.0,
+                          color: Colors.blue[900]!),
+                      borderRadius: BorderRadius.circular(ss.width * .06),
+                      gradient:  LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Colors.blue[800]!, Colors.blue[400]! ],
+                      ),
+                    ),
+                    child: TextButton(
+                      child: Icon(Icons.dry,
+                        color: Colors.white,
+                        size: ss.width * .04,
+                      ),
+                      onPressed: () {
+
+                      },
+                    ),
+                  ),
+
+                  Container(
+                    width: ss.width * .12,
+                    height: ss.width * .12,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 1.0,
+                          color: Colors.blue[900]!),
+                      borderRadius: BorderRadius.circular(ss.width * .06),
+                      gradient:  LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Colors.blue[800]!, Colors.blue[400]! ],
+                      ),
+                    ),
+                    child: TextButton(
+                      child: Icon(Icons.lock_outline,
+                        color: Colors.white,
+                        size: ss.width * .04,
+                      ),
+                      onPressed: () {
+
+                      },
+                    ),
+                  ),
+
+                  Container(
+                    width: ss.width * .12,
+                    height: ss.width * .12,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 1.0,
+                          color: Colors.blue[900]!),
+                      borderRadius: BorderRadius.circular(ss.width * .06),
+                      gradient:  LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Colors.blue[800]!, Colors.blue[400]! ],
+                      ),
+                    ),
+                    child: TextButton(
+                      child: Icon(Icons.lock_outline,
+                        color: Colors.white,
+                        size: ss.width * .04,
+                      ),
+                      onPressed: () {
+
+                      },
+                    ),
+                  )
+
+                ],)
+
+
 
             ]
         ),
-      ),
+      )
     ));
   }
 
@@ -321,7 +439,7 @@ class _ControlPageState extends State<ControlPage> {
         .of(context)
         .size;
 
-    _headerHeight = ss.height * .14;
+    _headerHeight = ss.height * .17;
     _bodyHeight = ss.height * .9;
 
     return Scaffold(body:
@@ -387,7 +505,9 @@ class _ControlPageState extends State<ControlPage> {
                       child: Column(children: [
                         Row(children: [Icon(Icons.battery_charging_full_sharp,
                           size: ss.width * .02,),
-                          Text("Battery")
+                          Text("Battery",
+                          style:TextStyle(fontSize: ss.width * .03)
+                          )
                         ]),
                         Text(battery_percent_text)
                       ],)
@@ -397,7 +517,8 @@ class _ControlPageState extends State<ControlPage> {
                         child: Column(children: [
                           Row(children: [Icon(Icons.my_location_sharp,
                             size: ss.width * .02,),
-                            Text("Range")
+                            Text("Range",
+                                style:TextStyle(fontSize: ss.width * .03))
                           ]),
                           Text(range_text)
                         ],)
@@ -409,7 +530,8 @@ class _ControlPageState extends State<ControlPage> {
                           Row(children: [Icon(Icons.person_pin_circle_rounded,
                             size: ss.width * .02,
                           ),
-                            Text("Temperature")
+                            Text("Temperature",
+                                style:TextStyle(fontSize: ss.width * .03))
                           ]),
                           Text(temperature_text)
                         ],))
@@ -418,7 +540,7 @@ class _ControlPageState extends State<ControlPage> {
             ),
             Row(children: [Text("Information")],),
             Container(
-                height: ss.width * .45,
+                height: ss.width * .35,
                 width: ss.width,
                 padding: EdgeInsets.all(ss.width * .04),
                 child:
